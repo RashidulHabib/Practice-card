@@ -1,0 +1,92 @@
+:root{
+    --clr-neutral-900: hsl(207, 19%, 9%);
+    --clr-neutral-white: hsl(0, 0%, 100%);
+    --clr-accent-400: hsl(142, 90%, 61%);
+}
+*,
+*::before,
+*::after{
+    box box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    line-height: 1.5;
+    background: var(--clr-neutral-900);
+    font-family: sans-serif;
+}
+.card{
+    color: var(--clr-neutral-white);
+    background-image: url(images/coding-vs-programming-2\ \(1\).jpg);
+    background-size: cover;
+    padding: 20rem 0 0;
+    max-width: 40ch;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    /* Make the transform smooth */
+   transition: transform 500ms ease;
+}
+.card:hover{
+    /* Make the card popup a bit */
+    transform: scale(1.1);
+}
+.card-content{
+    --padding: 1.5rem;
+    padding: var(--padding);
+    /* not sure about this. */
+    /* This section for making the card image gradint and blur from top to bottom */
+    background: linear-gradient(
+      hsl(0 0% 0% / 0),
+      hsl(20 0% 0% / .3) 20%,  
+      hsl(0 0% 0% / 1)    
+    );
+    /* I want the text none wirhout the heading when not hover */
+    transform: translateY(69%);
+    transition: transform 500ms ease;
+}
+.card:hover .card-content{
+    /* When hover I want the text go up. If I make the translate-0 then the previous transform will eliminate. then the text will go to its accutial position */
+    transform: translateY(0);
+}
+.card-title{
+    position: relative;
+    width: max-content;
+}
+.card-title::after{
+    content: "";
+    position: absolute;
+    height: 3px;
+    left: calc(var(--padding) * -1);
+    bottom: -2px;
+     width: calc(100% + var(--padding));
+    background: var(--clr-accent-400);
+    /* Make the underline of the title show when pointer is not hover*/
+    transform: scaleX(0);
+
+}
+.card:hover .card-title::after{
+/* Make the underline of the title show when pointer hover*/
+    transform: scaleX(1);
+    transition: transform 500ms ease .4s;
+    /* Transitioning from the middle. I want it from left */
+    transform-origin: left;
+}
+.card-body{
+    /* LIght The text */
+    color: rgba(255 255 255 / 0.8);
+}
+.button{
+    cursor: pointer;
+    display: inline;
+    text-decoration: none;
+    color: var(--clr-neutral-900);
+    background-color: var(--clr-accent-400);
+    padding: 0.5em 1.25em;
+    border-radius: 0.25em;
+}
+.button:hover,
+.button:focus{
+    background-color: var(--clr-neutral-white);
+}
